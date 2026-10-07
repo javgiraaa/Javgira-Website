@@ -1,0 +1,12 @@
+.page-hero{padding-top:calc(var(--nav-h) + 64px);padding-bottom:16px;position:relative;overflow:clip}
+.page-hero::before{content:"";position:absolute;inset:-20% -10% auto -10%;height:60%;pointer-events:none;
+  background:radial-gradient(560px 240px at 50% 0%,rgba(212,175,55,.14),transparent 70%);
+  animation:glow-pan 16s ease-in-out infinite alternate}
+.page-hero .u-title{font-size:clamp(32px,5vw,54px)}
+.page-hero .lead{max-width:60ch}
+.page-hero .hero-badges .chip{border-color:var(--accent-100);color:var(--accent-300);background:var(--accent-50)}
+.cta-slim{margin-top:44px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:26px 28px;border:1px solid var(--border-soft);border-radius:var(--radius-lg);background:var(--bg-soft);transition:border-color .3s var(--ease),box-shadow .3s var(--ease),transform .35s var(--ease)}
+.cta-slim:hover{border-color:var(--accent-100);box-shadow:0 12px 30px rgba(0,0,0,.5),0 0 24px rgba(212,175,55,.08);transform:translateY(-2px)}
+.notfound{display:grid;place-items:center;text-align:center;min-height:60vh}
+.notfound h1{font-size:clamp(80px,18vw,180px);background:var(--accent-gradient);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.35s}

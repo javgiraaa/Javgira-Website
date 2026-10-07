@@ -1,0 +1,101 @@
+/* JavGira — premium motion layer (Black & Gold, RTL-safe)
+   GPU-friendly: only transform + opacity. Respects prefers-reduced-motion. */
+
+/* ---------- 1. Hero: kicker float + load stagger ---------- */
+.hero-copy .kicker{animation:float-soft 5s ease-in-out infinite alternate;will-change:transform}
+@keyframes float-soft{from{transform:translateY(0)}to{transform:translateY(-6px)}}
+
+/* Staggered hero entrance (applied via .hero-enter + --d delay).
+   Falls back to .reveal behaviour if JS disabled — starts visible, animates once. */
+.hero-enter{opacity:0;transform:translateY(24px);animation:hero-enter .9s var(--ease-out) forwards;animation-delay:var(--d,0s);will-change:transform,opacity}
+@keyframes hero-enter{to{opacity:1;transform:none}}
+
+/* ---------- 2. Scroll reveal: scale-up variant for cards ---------- */
+.reveal-scale{opacity:0;transform:translateY(26px) scale(.96);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out);transition-delay:var(--d,0s);will-change:transform,opacity}
+.reveal-scale.visible{opacity:1;transform:none}
+
+/* ---------- 3. Section ambient glow (subtle animated gradient) ---------- */
+main section{isolation:isolate}
+main section::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.5;
+  background:radial-gradient(520px 220px at 85% 12%,rgba(212,175,55,.07),transparent 70%),
+             radial-gradient(460px 200px at 12% 88%,rgba(212,175,55,.05),transparent 70%);
+  animation:glow-pan 18s ease-in-out infinite alternate;will-change:opacity,transform}
+@keyframes glow-pan{from{opacity:.35;transform:translate3d(0,0,0) scale(1)}to{opacity:.6;transform:translate3d(0,-10px,0) scale(1.02)}}
+.team-stats::before,.hero::before{display:none} /* keep bespoke backgrounds clean */
+
+/* ---------- 4. Back-to-top button ---------- */
+#backTop{position:fixed;bottom:24px;inset-inline-start:24px;z-index:55;width:46px;height:46px;border-radius:50%;
+  display:grid;place-items:center;font-size:20px;line-height:1;color:#0a0a0a;background:var(--accent-gradient);
+  border:1px solid var(--accent-100);box-shadow:0 10px 26px rgba(212,175,55,.32);cursor:pointer;
+  opacity:0;transform:translateY(16px) scale(.9);pointer-events:none;
+  transition:opacity .35s var(--ease),transform .35s var(--ease-spring),box-shadow .35s var(--ease)}
+#backTop.show{opacity:1;transform:none;pointer-events:auto}
+#backTop:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(212,175,55,.4)}
+#backTop:active{transform:scale(.94)}
+#backTop:focus-visible{outline:2px solid var(--accent-300);outline-offset:3px}
+
+/* ---------- 5. Button ripple + click scale ---------- */
+.btn-ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.45);transform:scale(0);opacity:.7;pointer-events:none;will-change:transform,opacity;animation:ripple-ping .6s var(--ease-out) forwards}
+.btn-primary .btn-ripple{background:rgba(10,10,10,.22)}
+@keyframes ripple-ping{to{transform:scale(1);opacity:0}}
+
+/* ---------- 6. Skeleton loaders for projects grid ---------- */
+.skeleton-card{background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius-lg);padding:26px;overflow:hidden;position:relative;min-height:270px}
+.skeleton-card .sk{position:relative;overflow:hidden;background:var(--surface-3);border-radius:8px;min-height:14px}
+.skeleton-card .sk.title{height:20px;width:62%;margin-bottom:12px}
+.skeleton-card .sk.line{height:13px;margin-bottom:9px}
+.skeleton-card .sk.line.short{width:55%}
+.skeleton-card .sk.tags{display:flex;gap:7px;margin-top:14px}
+.skeleton-card .sk.tags i{width:56px;height:22px;border-radius:999px;background:var(--surface-3);display:block}
+.skeleton-card .sk::after{content:"";position:absolute;inset:0;transform:translateX(-100%);
+  background:linear-gradient(100deg,transparent 20%,rgba(212,175,55,.16) 50%,transparent 80%);
+  animation:shimmer 1.4s infinite;will-change:transform}
+@keyframes shimmer{to{transform:translateX(100%)}}
+/* RTL: sweep direction flips naturally with logical flow; keep LTR sweep for gold sheen consistency */
+[dir="rtl"] .skeleton-card .sk::after{animation-name:shimmer-rtl}
+@keyframes shimmer-rtl{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
+
+.spinner{width:34px;height:34px;border-radius:50%;border:3px solid var(--surface-3);border-top-color:var(--accent-500);animation:spin .8s linear infinite;margin:24px auto}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- 7. Form / validation shake + bounce ---------- */
+.shake{animation:shake .45s var(--ease);border-color:var(--danger)!important}
+@keyframes shake{10%,90%{transform:translateX(-2px)}20%,80%{transform:translateX(3px)}30%,50%,70%{transform:translateX(-5px)}40%,60%{transform:translateX(5px)}}
+.field-error{color:var(--danger);font-size:13.5px;font-weight:700;animation:hero-enter .4s var(--ease-out)}
+
+/* ---------- 8. Nav active underline + link/icon color transitions ---------- */
+.nav-links a{position:relative}
+.nav-links a::after{content:"";position:absolute;bottom:4px;inset-inline:14px;height:2px;border-radius:2px;
+  background:var(--accent-gradient);transform:scaleX(0);transform-origin:50% 50%;transition:transform .35s var(--ease-out)}
+.nav-links a.active::after{transform:scaleX(1)}
+.nav-links a.active{--tw:none}
+/* staggered mobile menu links */
+@media(max-width:760px){
+  .nav-links.open a{animation:hero-enter .45s var(--ease-out) backwards}
+  .nav-links.open a:nth-child(1){animation-delay:.05s}
+  .nav-links.open a:nth-child(2){animation-delay:.12s}
+  .nav-links.open a:nth-child(3){animation-delay:.19s}
+}
+/* footer + generic links: smooth gold underline */
+.footer-nav a{position:relative;transition:color .3s var(--ease);text-decoration:none}
+.footer-nav a::after{content:"";position:absolute;bottom:-3px;inset-inline-start:0;width:100%;height:1px;background:var(--accent-500);transform:scaleX(0);transform-origin:100% 50%;transition:transform .35s var(--ease-out)}
+.footer-nav a:hover{color:var(--accent-300)}
+.footer-nav a:hover::after{transform:scaleX(1)}
+.visit,.contact-card .icon,.stat-icon,.stack-pill,.tag,.chip{transition:color .3s var(--ease),border-color .3s var(--ease),background .3s var(--ease),transform .35s var(--ease-spring),filter .3s var(--ease)}
+.contact-card:hover .icon svg{stroke:var(--accent-500)}
+
+/* ---------- 9. View Transitions: smooth fade + slide ---------- */
+::view-transition-old(root){animation:vt-out .35s var(--ease-out) both}
+::view-transition-new(root){animation:vt-in .35s var(--ease-out) both}
+@keyframes vt-out{to{opacity:0;transform:translateY(10px)}}
+@keyframes vt-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ---------- 10. Reduced motion: disable everything new ---------- */
+@media(prefers-reduced-motion:reduce){
+  .hero-copy .kicker,.hero-enter,main section::before,.skeleton-card .sk::after,.spinner,#backTop,.btn-ripple,.caret{animation:none!important}
+  .hero-enter,.reveal-scale{opacity:1!important;transform:none!important;transition:none!important}
+  #backTop{transition:none}
+}
+@media print{
+  #backTop,.skeleton-card .sk::after,main section::before{display:none!important}
+}

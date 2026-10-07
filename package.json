@@ -1,0 +1,9 @@
+{
+  "name": "javgira-static",
+  "version": "2.0.0",
+  "private": true,
+  "description": "JavGira — pure static site. No dependencies.",
+  "scripts": {
+    "serve": "npx serve ."
+  }
+}
