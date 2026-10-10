@@ -1,6 +1,0 @@
-.marquee{overflow:hidden;border-block:1px solid var(--border-soft);background:var(--bg-soft);padding:14px 0;position:relative;z-index:2}
-.marquee-track{display:flex;width:max-content;animation:scroll 28s linear infinite;will-change:transform}
-.marquee:hover .marquee-track{animation-play-state:paused}
-.marquee-track span{font-weight:800;font-size:14px;color:var(--muted);padding:0 22px;white-space:nowrap;display:flex;align-items:center;gap:22px}
-.marquee-track span::after{content:"◆";color:var(--accent-500);font-size:10px}
-@keyframes scroll{to{transform:translateX(50%)}}

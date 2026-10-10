@@ -1,8 +1,0 @@
-.contact-card{position:relative;display:flex;flex-direction:column;gap:6px;padding:28px 24px;border-radius:var(--radius-lg);background:var(--surface);border:1px solid var(--border-soft);box-shadow:var(--shadow-sm);overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s,background .35s var(--ease);will-change:transform;transform-style:preserve-3d;text-decoration:none}
-.contact-card:hover,.contact-card:focus-visible{transform:translateY(-5px);border-color:var(--accent-300);box-shadow:0 16px 40px rgba(0,0,0,.55),0 0 0 1px rgba(212,175,55,.14);background:linear-gradient(180deg,#1c1c1c,var(--accent-50))}
-.contact-card:active{transform:translateY(-2px) scale(.99)}
-.contact-card .icon{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--accent-50);border:1px solid var(--accent-100);transition:transform .35s var(--ease-spring),border-color .3s var(--ease),background .3s var(--ease);margin-bottom:6px}
-.contact-card:hover .icon{transform:scale(1.08) rotate(-4deg);border-color:var(--accent-300)}
-.contact-card .icon svg{width:23px;height:23px;stroke:var(--accent-300);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s var(--ease),transform .35s var(--ease-spring)}
-.contact-card b{font-size:16.5px;color:var(--text)}
-.contact-card small{color:var(--muted);font-size:13.5px}
