@@ -1,0 +1,9 @@
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{min-height:100vh}
+img,svg,video{display:block;max-width:100%}
+button,input,select,textarea{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+a{text-decoration:none}
+ul,ol{list-style:none}
+[hidden]{display:none!important}

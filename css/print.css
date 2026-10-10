@@ -1,0 +1,7 @@
+@media print{
+.site-header,.progress,.dots,.marquee,.hero-blob,.btn-row{display:none!important}
+body{background:#fff;color:#000;font-size:12pt}
+.wrap{max-width:100%}
+.service,.project-card,.contact-card,.process-card{break-inside:avoid;border:1px solid #999;background:#fff;box-shadow:none}
+a{text-decoration:underline;color:#000}
+}
