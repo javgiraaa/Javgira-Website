@@ -1,0 +1,67 @@
+.team-stats {
+  padding-block: clamp(40px, 6vw, 72px);
+  background: var(--bg-soft);
+  border-block: 1px solid var(--border-soft);
+  position: relative;
+  z-index: 2;
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  align-items: center;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  padding: 18px 12px;
+  border-radius: var(--radius-lg);
+  transition: transform .35s var(--ease), background .35s var(--ease);
+}
+
+.stat-item:hover {
+  transform: translateY(-4px);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.stat-icon {
+  font-size: 28px;
+  line-height: 1;
+  margin-bottom: 4px;
+  filter: grayscale(0.3);
+  transition: transform .35s var(--ease-spring);
+}
+
+.stat-item:hover .stat-icon {
+  transform: scale(1.15);
+  filter: grayscale(0);
+}
+
+.stat-number {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800;
+  color: var(--accent-300);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-label {
+  font-size: 14.5px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+@media (max-width: 760px) {
+  .stats-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .stat-item { padding: 14px 8px; }
+  .stat-icon { font-size: 24px; }
+}
